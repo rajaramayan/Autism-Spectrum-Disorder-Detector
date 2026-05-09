@@ -174,7 +174,7 @@ for name, model in models.items():
     # Save model
     filename = MODEL_FILES[name]
     joblib.dump(model, os.path.join(MODELS_DIR, filename))
-    print(f"    Saved → models/{filename}")
+    print(f"    Saved  → models/{filename}")
 
 # ==========================================
 # 7. ANN MODEL
@@ -197,8 +197,8 @@ history = ann.fit(
     verbose=1,
 )
 
-ann.save(os.path.join(MODELS_DIR, "ann_model.keras"))
-print("ANN model saved → models/ann_model.keras")
+ann.save(os.path.join(MODELS_DIR, "ann_model.h5"))
+print("ANN model saved → models/ann_model.h5")
 
 # ANN Evaluation
 y_prob_ann = ann.predict(X_test_scaled).flatten()

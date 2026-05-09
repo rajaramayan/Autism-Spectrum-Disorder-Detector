@@ -57,7 +57,7 @@ def load_all_models():
         if os.path.exists(path):
             ml_models[name] = joblib.load(path)
 
-    ann_path = os.path.join(MODELS_DIR, "ann_model.keras")
+    ann_path = os.path.join(MODELS_DIR, "ann_model.h5")
     if os.path.exists(ann_path):
         ml_models["ANN"] = load_model(ann_path, compile=False)
 
