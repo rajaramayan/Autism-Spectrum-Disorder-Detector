@@ -1,0 +1,14 @@
+# render.yaml — Render deployment configuration
+# Commit this file to the root of your GitHub repository.
+
+services:
+  - type: web
+    name: asd-screening-app
+    env: python
+    region: oregon           # change to your preferred region
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.10.0"
