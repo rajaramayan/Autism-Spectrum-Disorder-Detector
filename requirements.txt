@@ -1,19 +1,15 @@
 # ============================================================
 # requirements.txt — Render DEPLOYMENT dependencies
 # ============================================================
-# Python 3.11.9  (pinned via runtime.txt)
-# This file is used by Render during the build step.
-# It contains ONLY what app.py needs (no training libraries).
-#
-# For LOCAL training (train.py), also install:
-#   pip install matplotlib seaborn imbalanced-learn tensorflow
+# Python 3.11.9  (pinned via .python-version and runtime.txt)
+# TensorFlow is intentionally excluded — too large for free tier
+# (512 MB RAM). The ANN model loads only if TF is available;
+# the app works fully with the 8 classical ML models regardless.
 # ============================================================
 
 streamlit>=1.32.0,<2.0.0
 numpy>=1.24.0,<2.0.0
 pandas>=2.0.0,<3.0.0
 scikit-learn>=1.3.0,<1.6.0
-tensorflow-cpu==2.13.0
 joblib>=1.3.0
-protobuf>=3.20.0,<5.0.0
 h5py>=3.9.0

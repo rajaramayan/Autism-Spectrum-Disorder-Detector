@@ -15,7 +15,14 @@ import numpy as np
 import pandas as pd
 import joblib
 import streamlit as st
-from tensorflow.keras.models import load_model
+
+# TensorFlow is optional — too large for Render free tier (512 MB RAM).
+# The app works fully with the 8 classical models if TF is absent.
+try:
+    from tensorflow.keras.models import load_model as tf_load_model
+    TF_AVAILABLE = True
+except ImportError:
+    TF_AVAILABLE = False
 
 # ==========================================
 # PAGE CONFIGURATION
@@ -58,8 +65,8 @@ def load_all_models():
             ml_models[name] = joblib.load(path)
 
     ann_path = os.path.join(MODELS_DIR, "ann_model.h5")
-    if os.path.exists(ann_path):
-        ml_models["ANN"] = load_model(ann_path, compile=False)
+    if TF_AVAILABLE and os.path.exists(ann_path):
+        ml_models["ANN"] = tf_load_model(ann_path, compile=False)
 
     return ml_models
 
